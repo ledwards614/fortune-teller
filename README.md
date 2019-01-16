@@ -1,100 +1,151 @@
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class Application {
 	public static void main(String[] args) {
 	Scanner input = new Scanner(System.in);
+	String strAge = null;
+	String strMonth = null;
+	String strSibling = null;
 	
 	System.out.println("Please enter your first name");
+	if (input.nextLine().equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
 	String firstName = input.nextLine();
 	
 	System.out.println("Please enter your last name");
+	if (input.nextLine().equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
 	String lastName = input.nextLine();
 	
 	System.out.println("Please enter your age");
-	int age = input.nextInt();
+	String tmpAge = input.nextLine();
+	//if (input.nextLine().equalsIgnoreCase("quit")) {
+	if (tmpAge.equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
+	int age = Integer.parseInt(tmpAge);
+	//input.nextLine();
+	//in age = input.nextInt();
+	
 	
 	System.out.println("Please enter your birth month 1-12");
-	int month = input.nextInt();
+	String tmpMonth = input.nextLine();
+	if (tmpMonth.equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
+	int month = Integer.parseInt(tmpMonth);
 	input.nextLine();
 	
 	System.out.println("What is your favorite ROYGBIV Color? or \"help\" if unsure");
 	String color = input.nextLine();
+	if (color.equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
+	
 	//input.nextLine();
-	if (color.equalsIgnoreCase("help")) {
-		System.out.println("Red, Orange, yellow, green, blue, indigo, or violet, "
+	while (color.equalsIgnoreCase("help")) {
+	//if (color.equalsIgnoreCase("help")) {
+		System.out.println("The ROYGBIV colors are red, orange, yellow, green, blue, indigo, violet."
 				+ "please enter your favorite color");
-		color = input.nextLine();	
+		color = input.nextLine();
 	}
 
 	System.out.println("Please enter how many siblings you have");
-	int siblings = input.nextInt();
+	String tmpSib = input.nextLine();
+	if (tmpSib.equalsIgnoreCase("quit")) {
+		System.out.println("Nobody likes a quitter...");
+		System.exit(0);
+	}
+	int siblings = Integer.parseInt(tmpSib);
 
 
-	ageFortune(age);
+	//ageFortune(age);
 
-	monthFortune(month);
+	//monthFortune(month);
 
-	colorFortune(color);
+	//colorFortune(color);
 
-	siblingFortune(siblings);
+	//siblingFortune(siblings);
+	
+	System.out.println("*" + firstName + "* *" + lastName + "* *" + colorFortune(color) + "* *" + monthFortune(month) + "* *" + siblingFortune(siblings) + "* *" + ageFortune(age) + "*");
+	
 	}
 
-	private static void siblingFortune(int siblings) {
+	private static String siblingFortune(int siblings) {
+		String sibStr = null;
 		if (siblings == 0) {
-			System.out.println("You will have 1 child");
+			sibStr = "You will have 1 child";
 		} else if (siblings == 1) {
-			System.out.println("You will have 3 children");
+			sibStr = "You will have 3 children";
 
 		} else if (siblings == 2) {
-			System.out.println("You will have 2 children");
+			sibStr = "You will have 2 children";
 		} else {
-			System.out.println("You will have 0 children");
+			sibStr = "You will have 0 children";
 		}
+		return sibStr;
 	}
 
-	private static void colorFortune(String color) {
+	private static String colorFortune(String color) {
 		switch (color.toLowerCase()) {
 		case "red":
-		    System.out.println("You will be a firefighter");
+		    color = "You will be a firefighter";
 		    break;
 		case "orange":
-		    System.out.println("You will be a professional athlete");
+		    color = "You will be a professional athlete";
 		    break;
 		case "yellow":
-		    System.out.println("You will be a doctor");
+		    color = "You will be a doctor";
 		    break;
 		case "green":
-		    System.out.println("You will be a surfer");
+		    color = "You will be an astronaut";
 		    break;
 		case "blue":
-		    System.out.println("You will be a programmer");
+		    color = "You will be a programmer";
 		    break;
 		case "indigo":
-		    System.out.println("You will be an artist.");
+		    color = "You will be an artist";
+		    break;
+		case "violet":
+		    color = "You will be a chef";
 		    break;
 		default:
-		    System.out.println("You will be a teacher");
+		    color = "You will be a teacher";
 		}
+		return color;
 	}
 
-	private static void monthFortune(int month) {
+	private static String monthFortune(int month) {
+		String monthStr = null;
 		if (month <= 0 || month >12) {
-			System.out.println("Your income will make $50,000 per year ");
+			monthStr = "Your income will make $50,000 per year ";
 		} else if (month <4 ) {
-			System.out.println("Your income will be $150,000 per year");
+			monthStr = "Your income will be $150,000 per year";
 		} else if (month < 8) {
-			System.out.println("Your income will be 250,000 per year");
+			monthStr = "Your income will be 250,000 per year";
 		} else {
-			System.out.println("Your income will be $100,000 per year");
+			monthStr = "Your income will be $100,000 per year";
 		}
+		return monthStr;
 	}
 
-	private static void ageFortune(int age) {
+	private static String ageFortune(int age) {
+		String ageStr = null;
 		if (age % 2 == 0) { // even will have remainder (%) of zero if divided by 2
-			System.out.println("You have dogs as pets");
+			ageStr = "You will have dogs as pets";
 		} else {
-			System.out.println("You will have cats as pets");
+			ageStr = "You will have cats as pets";
 		}
+		return ageStr;
 	}
 	
 	
